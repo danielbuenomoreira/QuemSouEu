@@ -1,73 +1,49 @@
-/* Reset básico para remover margens e paddings padrão */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+/* O Bootstrap já lida com os resets de margem, box-sizing e font-family padrão */
 
 body {
     background: linear-gradient(to right, #141e30, #243b55);
-    color: white;
-    text-align: center;
-    padding: 20px;
+    /* A cor da fonte agora é gerenciada pelas classes do Bootstrap no HTML */
 }
 
-h1, h2 {
+.title-color {
     color: #f39c12;
-    margin-bottom: 15px;
 }
 
-h4 {
-    max-width: 600px;
-    margin: 10px auto 20px;
-    font-size: 18px;
+.presentation-text {
+    max-width: 500px;
+    font-size: 1.05rem;
     line-height: 1.6;
 }
 
-img {
+.profile-img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     object-fit: cover;
     border: 4px solid #f39c12;
-    margin-bottom: 15px;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-li {
-    display: flex;
-    align-items: center;
+/* Estilização customizada dos botões integrando com o HTML do Bootstrap */
+.btn-custom {
     background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+    color: #f39c12;
+    border: 1px solid transparent;
     border-radius: 10px;
-    margin-bottom: 10px;
-    transition: 0.3s;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-li:hover {
+.btn-custom:hover, 
+.btn-custom:focus {
     background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-color: #f39c12;
+    transform: translateY(-2px); /* Efeito suave de elevação ao passar o mouse */
 }
 
 .icon {
     width: 30px;
     height: auto;
-    margin-right: 10px;
-}
-
-a {
-    color: #f39c12;
-    text-decoration: none;
-    font-weight: bold;
-    flex-grow: 1;
-}
-
-a:hover {
-    text-decoration: underline;
 }
