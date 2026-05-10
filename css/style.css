@@ -1,5 +1,3 @@
-/* O Bootstrap já lida com os resets de margem, box-sizing e font-family padrão */
-
 body {
     background: linear-gradient(to right, #141e30, #243b55);
     /* A cor da fonte agora é gerenciada pelas classes do Bootstrap no HTML */
