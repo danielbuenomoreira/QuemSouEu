@@ -1,47 +1,74 @@
 body {
-    background: linear-gradient(to right, #141e30, #243b55);
-    /* A cor da fonte agora é gerenciada pelas classes do Bootstrap no HTML */
+    background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+    font-family: 'Poppins', sans-serif; /* Nova fonte moderna */
 }
 
 .title-color {
     color: #f39c12;
 }
 
+/* Novo: Efeito Glassmorphism para a apresentação não ficar "solta" */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
 .presentation-text {
-    max-width: 800px;
     font-size: 1.05rem;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .profile-img {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     border: 4px solid #f39c12;
+    transition: transform 0.3s ease;
 }
 
-/* Estilização customizada dos botões integrando com o HTML do Bootstrap */
+/* Animação suave na foto de perfil */
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+/* Limita a largura máxima dos botões para não esticarem demais na nova grade */
+.links-container {
+    max-width: 550px; 
+}
+
+/* Estilização customizada dos botões atualizada */
 .btn-custom {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(5px);
     color: #f39c12;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-weight: bold;
+    border: 1px solid rgba(243, 156, 18, 0.3);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
+/* Hover: Inverte as cores e adiciona sombra */
 .btn-custom:hover, 
 .btn-custom:focus {
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+    background: rgba(243, 156, 18, 0.9);
+    color: #141e30 !important;
     border-color: #f39c12;
-    transform: translateY(-2px); /* Efeito suave de elevação ao passar o mouse */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .icon {
     width: 30px;
     height: auto;
+    transition: transform 0.3s ease;
+}
+
+.btn-custom:hover .icon {
+    transform: scale(1.1);
 }
