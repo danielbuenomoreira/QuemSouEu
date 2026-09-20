@@ -1,19 +1,40 @@
+/* ===== Cores e medidas em um lugar só ===== */
+:root {
+    --cor-destaque: #f39c12;
+    --cor-destaque-rgb: 243, 156, 18;
+    --cor-destaque-texto: #f5b041; /* um tom acima: garante contraste AA em texto pequeno */
+    --cor-fundo: #141e30;
+    --cor-fundo-2: #243b55;
+    --cor-foco: #ffffff;
+
+    --superficie-card: rgba(255, 255, 255, 0.05);
+    --superficie-btn: rgba(255, 255, 255, 0.08);
+    --borda-card: rgba(255, 255, 255, 0.1);
+    --borda-btn: rgba(var(--cor-destaque-rgb), 0.3);
+    --btn-bg-hover: rgba(var(--cor-destaque-rgb), 0.9);
+    --sombra-btn: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+    --raio-card: 15px;
+    --raio-btn: 12px;
+    --transicao: 0.3s ease;
+}
+
 body {
-    background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
-    font-family: 'Poppins', sans-serif; /* Nova fonte moderna */
+    background: linear-gradient(135deg, var(--cor-fundo) 0%, var(--cor-fundo-2) 100%);
+    font-family: 'Poppins', sans-serif;
 }
 
 .title-color {
-    color: #f39c12;
+    color: var(--cor-destaque);
 }
 
-/* Novo: Efeito Glassmorphism para a apresentação não ficar "solta" */
+/* Efeito Glassmorphism para os cards não ficarem "soltos" */
 .glass-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--superficie-card);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border: 1px solid var(--borda-card);
+    border-radius: var(--raio-card);
 }
 
 .presentation-text {
@@ -26,8 +47,8 @@ body {
     width: 160px;
     height: 160px;
     object-fit: cover;
-    border: 4px solid #f39c12;
-    transition: transform 0.3s ease;
+    border: 4px solid var(--cor-destaque);
+    transition: transform var(--transicao);
 }
 
 /* Animação suave na foto de perfil */
@@ -35,40 +56,137 @@ body {
     transform: scale(1.05);
 }
 
-/* Limita a largura máxima dos botões para não esticarem demais na nova grade */
+/* Limita a largura máxima dos botões */
 .links-container {
-    max-width: 550px; 
+    max-width: 550px;
 }
 
-/* Estilização customizada dos botões atualizada */
+/* Estilização customizada dos botões */
 .btn-custom {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--superficie-btn);
     backdrop-filter: blur(5px);
-    color: #f39c12;
-    border: 1px solid rgba(243, 156, 18, 0.3);
-    border-radius: 12px;
+    color: var(--cor-destaque);
+    border: 1px solid var(--borda-btn);
+    border-radius: var(--raio-btn);
     padding: 14px 20px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all var(--transicao);
 }
 
-/* Hover: Inverte as cores e adiciona sombra */
-.btn-custom:hover, 
-.btn-custom:focus {
-    background: rgba(243, 156, 18, 0.9);
-    color: #141e30 !important;
-    border-color: #f39c12;
+/* Hover: inverte as cores e adiciona sombra */
+.btn-custom:hover {
+    background: var(--btn-bg-hover);
+    color: var(--cor-fundo) !important;
+    border-color: var(--cor-destaque);
     transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--sombra-btn);
+}
+
+/* Foco por teclado: contorno de verdade, separado do hover.
+   Antes o :focus era idêntico ao :hover, então quem navega por Tab não via onde estava. */
+.btn-custom:focus-visible {
+    background: var(--btn-bg-hover);
+    color: var(--cor-fundo) !important;
+    border-color: var(--cor-destaque);
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 3px;
+    box-shadow: none;
 }
 
 .icon {
     width: 30px;
     height: auto;
-    transition: transform 0.3s ease;
+    transition: transform var(--transicao);
 }
 
 .btn-custom:hover .icon {
     transform: scale(1.1);
+}
+
+/* Botões do bloco "Outras redes": mais discretos que os de contato */
+.btn-secundario {
+    padding: 10px 16px;
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.btn-secundario .icon {
+    width: 22px;
+}
+
+.secao-secundaria {
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+}
+
+/* ===== Badges de tecnologia ===== */
+
+/* Rótulo dos grupos ("Stack principal" / "Também trabalho com") */
+.tech-label {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Chips: mesmo "vidro" dos botões, porém menores e sem link */
+.tech-badge {
+    display: inline-block;
+    background: var(--superficie-btn);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--borda-btn);
+    border-radius: 999px;
+    color: var(--cor-destaque-texto);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 8px 16px;
+    white-space: nowrap; /* o nome da tecnologia nunca quebra no meio */
+}
+
+/* Tecnologia principal (PHP): preenchida e com estrela.
+   A diferença não depende só da cor, então funciona para quem não distingue cores. */
+.tech-badge-main {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+    color: var(--cor-fundo);
+    box-shadow: 0 4px 12px rgba(var(--cor-destaque-rgb), 0.25);
+}
+
+/* Em telas bem estreitas os chips encolhem para caber mais por linha */
+@media (max-width: 400px) {
+    .tech-badge {
+        font-size: 0.82rem;
+        padding: 7px 13px;
+    }
+}
+
+/* Rodapé discreto */
+.site-footer {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+/* Respeita quem pediu menos movimento no sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .profile-img:hover,
+    .btn-custom:hover,
+    .btn-custom:hover .icon {
+        transform: none !important;
+    }
 }

@@ -2,17 +2,15 @@
 
 Bem-vindo ao meu GitHub! Criei esta página simples e centralizada para que você possa me encontrar facilmente nas redes sociais e explorar meus principais projetos de desenvolvimento.
 
-Sou desenvolvedor de software e web de Porto Alegre/RS, focado em entregar sistemas corporativos robustos. 
+Sou desenvolvedor de software em Porto Alegre/RS, focado na criação de soluções corporativas.
 
 ### 💻 Perfil Profissional
-* **Stack principal:** C# .NET, PHP/Laravel, Python e JavaScript.
-* **Formação:** Formado em Análise e Desenvolvimento de Sistemas e cursando Engenharia de Software.
-* **Atuação:** Atuo no setor de desenvolvimento (DECOR) da Secretaria de Logística e Transporte.
-
-### 🎵 Além do Código
-* **Pessoal:** Sou Adventista do Sétimo Dia e pai do Noé.
-* **Hobbies:** A música é muito presente na minha rotina (toco piano e canto). Também gosto de maratonar filmes e séries (já vi todo o MCU) e arriscar no desenvolvimento de jogos 2D no Godot.
-* **Games:** Curto jogar de tudo um pouco com meu filho, mas a rotação principal hoje é Call of Duty, Resident Evil e Dota 2.
+* **Stack principal:** PHP/Laravel, JavaScript, TypeScript, Node.js, Python e C# .NET.
+* **Dados e infra:** PostgreSQL, Linux/VPS e deploy de sistemas em produção.
+* **IA:** agentes de IA, bots e automações — e uso diário de IA para ganho de desempenho.
+* **Formação:** graduado em Análise e Desenvolvimento de Sistemas, cursando Engenharia de Software.
+* **Atuação:** desenvolvedor na MB Advocacia. Antes, fui o único desenvolvedor do Departamento de
+  Concessões Rodoviárias (DECOR), na Secretaria de Logística e Transporte.
 
 ---
 
