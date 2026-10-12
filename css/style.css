@@ -6,6 +6,8 @@
     --cor-fundo: #141e30;
     --cor-fundo-2: #243b55;
     --cor-foco: #ffffff;
+    --cor-texto: #f8f9fa;
+    --cor-texto-suave: rgba(255, 255, 255, 0.78);
 
     --superficie-card: rgba(255, 255, 255, 0.05);
     --superficie-btn: rgba(255, 255, 255, 0.08);
@@ -22,50 +24,134 @@
 body {
     background: linear-gradient(135deg, var(--cor-fundo) 0%, var(--cor-fundo-2) 100%);
     font-family: 'Poppins', sans-serif;
+    color: var(--cor-texto);
 }
 
 .title-color {
     color: var(--cor-destaque);
 }
 
-/* Efeito Glassmorphism para os cards não ficarem "soltos" */
+/* Cards translúcidos. (Sem backdrop-filter: o fundo é um gradiente plano, não há nada atrás para desfocar.) */
 .glass-card {
     background: var(--superficie-card);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--borda-card);
     border-radius: var(--raio-card);
 }
 
-.presentation-text {
-    font-size: 1.05rem;
-    line-height: 1.7;
+/* ===== Títulos de seção: um tratamento só para todos ===== */
+.secao-titulo {
+    color: var(--cor-destaque);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    position: relative;
 }
 
+/* Risco curto e centralizado, na cor de destaque (antes era o amarelo #ffc107 do Bootstrap) */
+.secao-titulo::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 48px;
+    height: 2px;
+    transform: translateX(-50%);
+    background: rgba(var(--cor-destaque-rgb), 0.6);
+    border-radius: 2px;
+}
+
+/* ===== Cabeçalho ===== */
 .profile-img {
     border-radius: 50%;
     width: 160px;
     height: 160px;
     object-fit: cover;
     border: 4px solid var(--cor-destaque);
-    transition: transform var(--transicao);
 }
 
-/* Animação suave na foto de perfil */
-.profile-img:hover {
-    transform: scale(1.05);
+/* Resumo factual abaixo do subtítulo */
+.resumo {
+    max-width: 600px;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--cor-texto-suave);
+    margin-bottom: 0;
 }
 
-/* Limita a largura máxima dos botões */
-.links-container {
-    max-width: 550px;
+.resumo strong {
+    color: var(--cor-texto);
+    font-weight: 600;
 }
 
-/* Estilização customizada dos botões */
-.btn-custom {
-    background: var(--superficie-btn);
-    backdrop-filter: blur(5px);
+/* ===== Texto de apresentação =====
+   Peso 400 no corpo e 600 no strong. Antes o corpo era 300 (fw-light) e o <strong> saía em 400:
+   catorze "negritos" quase invisíveis. */
+.presentation-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    font-weight: 400;
+    color: var(--cor-texto);
+}
+
+.presentation-text strong {
+    font-weight: 600;
+}
+
+/* ===== Projetos ===== */
+.projeto-titulo {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin-bottom: 0.5rem;
+}
+
+.projeto-contexto {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--cor-texto-suave);
+    margin-top: 0.15rem;
+}
+
+.projeto-texto {
+    font-size: 0.97rem;
+    line-height: 1.65;
+    margin-bottom: 0.9rem;
+}
+
+.projeto-links {
+    font-size: 0.92rem;
+}
+
+.projeto-links a {
+    color: var(--cor-destaque-texto);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--cor-destaque-rgb), 0.5);
+}
+
+.projeto-links a:hover,
+.projeto-links a:focus-visible {
     color: var(--cor-destaque);
+    border-bottom-color: var(--cor-destaque);
+}
+
+.divisor {
+    border-top: 1px solid var(--borda-card);
+    opacity: 1;
+    margin: 1.4rem 0;
+}
+
+/* ===== Botões de contato ===== */
+.links-container {
+    max-width: 100%;   /* mesma largura dos cards acima */
+}
+
+.btn.btn-custom {
+    background: var(--superficie-btn);
+    color: rgba(255, 255, 255, 0.92);
     border: 1px solid var(--borda-btn);
     border-radius: var(--raio-btn);
     padding: 14px 20px;
@@ -74,38 +160,37 @@ body {
     transition: all var(--transicao);
 }
 
-/* Hover: inverte as cores e adiciona sombra */
-.btn-custom:hover {
-    background: var(--btn-bg-hover);
-    color: var(--cor-fundo) !important;
-    border-color: var(--cor-destaque);
-    transform: translateY(-3px);
-    box-shadow: var(--sombra-btn);
+/* Rede de segurança para o e-mail em telas de 360px */
+.btn-custom span {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
-/* Foco por teclado: contorno de verdade, separado do hover.
-   Antes o :focus era idêntico ao :hover, então quem navega por Tab não via onde estava. */
-.btn-custom:focus-visible {
+/* Foco por teclado: contorno de verdade, separado do hover */
+.btn.btn-custom:focus-visible {
     background: var(--btn-bg-hover);
-    color: var(--cor-fundo) !important;
+    color: var(--cor-fundo);
     border-color: var(--cor-destaque);
     outline: 3px solid var(--cor-foco);
     outline-offset: 3px;
     box-shadow: none;
 }
 
-.icon {
-    width: 30px;
-    height: auto;
-    transition: transform var(--transicao);
+/* Botão primário: um só por página (LinkedIn). Mesmo tratamento da badge principal (PHP). */
+.btn.btn-custom.btn-primario {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+    color: var(--cor-fundo);
+    box-shadow: 0 4px 12px rgba(var(--cor-destaque-rgb), 0.25);
 }
 
-.btn-custom:hover .icon {
-    transform: scale(1.1);
+/* Destaque secundário (currículo): borda sólida, sem preenchimento */
+.btn.btn-custom.btn-contorno {
+    border-color: var(--cor-destaque);
 }
 
 /* Botões do bloco "Outras redes": mais discretos que os de contato */
-.btn-secundario {
+.btn.btn-custom.btn-secundario {
     padding: 10px 16px;
     font-size: 0.92rem;
     font-weight: 400;
@@ -123,6 +208,32 @@ body {
     font-size: 0.8rem;
 }
 
+.icon {
+    width: 30px;
+    height: auto;
+    transition: transform var(--transicao);
+}
+
+/* Hover só onde existe mouse de verdade: no toque, o estado "grudava" depois do clique */
+@media (hover: hover) {
+    .btn.btn-custom:hover {
+        background: var(--btn-bg-hover);
+        color: var(--cor-fundo);
+        border-color: var(--cor-destaque);
+        transform: translateY(-3px);
+        box-shadow: var(--sombra-btn);
+    }
+
+    .btn.btn-custom.btn-primario:hover {
+        background: var(--cor-destaque-texto);
+        border-color: var(--cor-destaque-texto);
+    }
+
+    .btn-custom:hover .icon {
+        transform: scale(1.1);
+    }
+}
+
 /* ===== Badges de tecnologia ===== */
 
 /* Rótulo dos grupos ("Stack principal" / "Também trabalho com") */
@@ -138,8 +249,6 @@ body {
 .tech-badge {
     display: inline-block;
     background: var(--superficie-btn);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
     border: 1px solid var(--borda-btn);
     border-radius: 999px;
     color: var(--cor-destaque-texto);
@@ -159,19 +268,50 @@ body {
     box-shadow: 0 4px 12px rgba(var(--cor-destaque-rgb), 0.25);
 }
 
-/* Em telas bem estreitas os chips encolhem para caber mais por linha */
-@media (max-width: 400px) {
-    .tech-badge {
-        font-size: 0.82rem;
-        padding: 7px 13px;
-    }
+/* Versão menor, usada na lista de stack de cada projeto */
+.tech-badge-sm {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 5px 11px;
+    color: var(--cor-texto-suave);
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
-/* Rodapé discreto */
+/* ===== Rodapé ===== */
 .site-footer {
     color: rgba(255, 255, 255, 0.45);
     font-size: 0.85rem;
     font-weight: 300;
+}
+
+.site-footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    color: var(--cor-destaque-texto);
+    border-bottom-color: var(--cor-destaque-texto);
+}
+
+/* ===== Telas estreitas ===== */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.65rem;
+        overflow-wrap: anywhere;
+    }
+
+    .tech-badge {
+        font-size: 0.82rem;
+        padding: 7px 13px;
+    }
+
+    .tech-badge-sm {
+        font-size: 0.74rem;
+        padding: 4px 9px;
+    }
 }
 
 /* Respeita quem pediu menos movimento no sistema operacional */
@@ -184,8 +324,7 @@ body {
         transition-duration: 0.01ms !important;
     }
 
-    .profile-img:hover,
-    .btn-custom:hover,
+    .btn.btn-custom:hover,
     .btn-custom:hover .icon {
         transform: none !important;
     }
